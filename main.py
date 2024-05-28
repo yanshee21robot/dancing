@@ -30,7 +30,7 @@ if __name__ == '__main__':
             6: 90,        
         }, 300)
 
-        utils.Voice(method='tts', text='first position')
+        #utils.Voice(method='tts', text='first position')
 
         time.sleep(2)
                 
@@ -44,7 +44,7 @@ if __name__ == '__main__':
             6: 0,
         }, 300)
 
-        utils.Voice(method='tts', text='second position')
+        #utils.Voice(method='tts', text='second position')
 
         time.sleep(2)
                 
@@ -58,7 +58,7 @@ if __name__ == '__main__':
             6: 180,
         }, 300)
 
-        utils.Voice(method='tts', text='third position')
+        #utils.Voice(method='tts', text='third position')
 
         time.sleep(2)
 
