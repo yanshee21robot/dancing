@@ -22,9 +22,9 @@ if __name__ == '__main__':
         
         utils.setRobotServo(RobotApi,
         {
-            1: 30,
-            2: 0,
-            3: 0,
+            1: 45,
+            2: 45,
+            3: 45,
         }, 300)
 
         #if (RobotApi.ubtVisionDetect("face", "0", 20) == 0):
