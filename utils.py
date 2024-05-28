@@ -79,7 +79,7 @@ def Voice(RobotApi, method='play', **kwargs):
     if method == 'play':
         # Проигрываем музыку, используя указанный путь к файлу
         RobotApi.ubtPlayMusic('play', kwargs['path'])
-    else:
+    elif method == 'tts':
         # Преобразуем текст в речь, используя указанный текст
         RobotApi.ubtVoiceTTS(0, kwargs['text'])
 
