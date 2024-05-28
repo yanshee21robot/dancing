@@ -18,6 +18,10 @@ if (0 != ret):
 isSetLed = False
 
 if __name__ == '__main__':
+    utils.StartAction(RobotApi, "Left hits forward", 1)
+
+    quit()
+
     try:
         
         utils.setRobotServo(RobotApi,
