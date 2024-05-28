@@ -27,6 +27,13 @@ if __name__ == '__main__':
             3: 45,
         }, 300)
 
+        utils.setRobotServo(RobotApi,
+        {
+            4: 45,
+            5: 45,
+            6: 45,
+        }, 300)
+        
         #if (RobotApi.ubtVisionDetect("face", "0", 20) == 0):
         #    pass
 
@@ -35,7 +42,7 @@ if __name__ == '__main__':
         print("Ошибка выполнения")
 
     # Сброс сервоприводов робота
-    RobotApi.ubtStartRobotAction("reset", 1)
+    #RobotApi.ubtStartRobotAction("reset", 1)
     # Отключение от SDK робота
     RobotApi.ubtRobotDisconnect("SDK", "1", "127.0.0.1")
     # Деинициализация SDK робота
