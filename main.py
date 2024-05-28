@@ -18,7 +18,7 @@ if (0 != ret):
 isSetLed = False
 
 if __name__ == '__main__':
-    utils.StartAction(RobotApi, "Left hits forward", 1)
+    utils.SetMotion(RobotApi, "wave", "both", 3, 1)
 
     quit()
 
