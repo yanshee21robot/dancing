@@ -48,7 +48,7 @@ def dancer():
 if __name__ == '__main__':
 
     servolist = {2: 90, 3: 90}
-    setRobotServo(RobotApi, servolist, 5000)
+    utils.setRobotServo(RobotApi, servolist, 5000)
     
     print("Выполнение кода завершено!")
 
