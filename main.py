@@ -2,81 +2,60 @@
 # -*- coding: utf-8 -*-
 
 import time
-import commands
-import RobotApi
 import utils
+try:
+    import commands
+    import RobotApi
+    api_check = True
+except ImportError as e:
+    print(e)
+    print("Продолжить? (Y/N)")
+    c = input("$> ")
+    if c == 'N':
+        quit()
+    else:
+        api_check = False
 
-# Инициализация SDK робота
-RobotApi.ubtRobotInitialize()
 
-# Подключение к SDK робота
-ret = RobotApi.ubtRobotConnect("SDK", "1", "127.0.0.1")
-if (0 != ret):
-    print("Не удается подключиться к SDK робота")
-    exit(1)
+if api_check:
+    # Инициализация SDK робота
+    RobotApi.ubtRobotInitialize()
 
-isSetLed = False
+    # Подключение к SDK робота
+    ret = RobotApi.ubtRobotConnect("SDK", "1", "127.0.0.1")
+    if (0 != ret):
+        print("Не удается подключиться к SDK робота")
+        exit(1)
+
+    isSetLed = False
+
+def dancer():
+    with open("test.txt", 'r', encoding='utf-8') as file:
+        moves = file.readlines()
+        for move in moves:
+            dictionary = {}
+            splitted_move = move.split(' ')
+            for i in range(1, 18):
+                try:
+                    if not splitted_move[i-1] in ['_', '-']:
+                        dictionary[i] = (splitted_move[i-1])
+                    else:
+                        pass
+                except IndexError:
+                    dictionary[i] = 0
+            print(dictionary)
 
 if __name__ == '__main__':
-    utils.SetMotion(RobotApi, "wave", "both", 3, 1)
 
-    quit()
+    servolist = {2: 90, 3: 90}
+    setRobotServo(RobotApi, servolist, 5000)
+    
+    print("Выполнение кода завершено!")
 
-    try:
-        
-        utils.setRobotServo(RobotApi,
-        {
-            1: 90,
-            2: 90,
-            3: 90,
-            4: 90,
-            5: 90,
-            6: 90,        
-        }, 300)
-
-        #utils.Voice(method='tts', text='first position')
-
-        time.sleep(2)
-                
-        utils.setRobotServo(RobotApi,
-        {
-            1: 0,
-            2: 0,
-            3: 0,
-            4: 0,
-            5: 0,
-            6: 0,
-        }, 300)
-
-        #utils.Voice(method='tts', text='second position')
-
-        time.sleep(2)
-                
-        utils.setRobotServo(RobotApi,
-        {
-            1: 180,
-            2: 180,
-            3: 180,
-            4: 180,
-            5: 180,
-            6: 180,
-        }, 300)
-
-        #utils.Voice(method='tts', text='third position')
-
-        time.sleep(2)
-
-        
-        #if (RobotApi.ubtVisionDetect("face", "0", 20) == 0):
-        #    pass
-
-        print("Выполнение кода завершено!")
-    except:
-        print("Ошибка выполнения")
-
-    # Сброс сервоприводов робота
-    RobotApi.ubtStartRobotAction("reset", 1)
-    # Отключение от SDK робота
-    RobotApi.ubtRobotDisconnect("SDK", "1", "127.0.0.1")
-    # Деинициализация SDK робота
-    RobotApi.ubtRobotDeinitialize()
+    if api_check:
+        # Сброс сервоприводов робота
+        RobotApi.ubtStartRobotAction("reset", 1)
+        # Отключение от SDK робота
+        RobotApi.ubtRobotDisconnect("SDK", "1", "127.0.0.1")
+        # Деинициализация SDK робота
+        RobotApi.ubtRobotDeinitialize()
